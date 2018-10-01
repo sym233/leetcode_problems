@@ -34,16 +34,16 @@ public:
         }
         
         int landCount = 0;
-        deque<Point> queue;
+        queue<Point> q;
         for (Point& point : lands) {
             if (grid[point.h][point.w] == '1') {
                 
-                queue.push_back(point);
+                q.push_back(point);
                 grid[point.h][point.w] = '0';
                 landCount++;
                 
-                while (queue.size() > 0) {
-                    Point& p = queue.front();
+                while (q.size() > 0) {
+                    Point& p = q.front();
                     
                     for (Point direction : directions) {
                         Point newPoint = direction + p;
@@ -55,11 +55,11 @@ public:
                             grid[h][w] == '1') {
                             
                             grid[h][w] = '0';
-                            queue.push_back(Point(h, w));
+                            q.push_back(Point(h, w));
                         }
                     }
 
-                    queue.pop_front();
+                    q.pop_front();
                 }
             }
         }
